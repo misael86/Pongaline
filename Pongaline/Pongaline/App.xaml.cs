@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Pongaline.Containers;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Windows.ApplicationModel;
@@ -30,7 +32,7 @@ namespace Pongaline
         public App()
         {
             this.InitializeComponent();
-            this.Suspending += OnSuspending;
+            this.Suspending += OnSuspending;   
         }
 
         /// <summary>

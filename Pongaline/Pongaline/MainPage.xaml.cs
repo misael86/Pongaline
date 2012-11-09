@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Pongaline.Classes;
+using Pongaline.Containers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -21,9 +23,53 @@ namespace Pongaline
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        GameContainer gameContainer = new GameContainer();
+
         public MainPage()
         {
             this.InitializeComponent();
+
+            gameContainer.mainGrid = this.MainGrid;
+
+            DispatcherTimer runGameTimer = new DispatcherTimer();
+            runGameTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
+            runGameTimer.Tick += runGameTimer_Tick;
+            runGameTimer.Start();
+
+            InitiateData();
+        }
+
+        private void InitiateData()
+        {
+            Random r = new Random();
+
+            BallEntity ball = new BallEntity()
+            {
+                position = new Position()
+                {
+                    x = 0,
+                    y = 0,
+                },
+
+                size = new Pongaline.Classes.Size()
+                {
+                    height = r.Next(50),
+                    width = r.Next(50),
+                },
+
+                velocity = new Velocity() 
+                { 
+                    x = 10,
+                    y = 15,
+                },
+            };
+
+            gameContainer.AddEntity(ball);
+        }
+
+        void runGameTimer_Tick(object sender, object e)
+        {
+            gameContainer.Update();
         }
 
         /// <summary>
