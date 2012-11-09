@@ -43,6 +43,15 @@ namespace Pongaline
         {
             Random r = new Random();
 
+            /*
+             * For collision, if there is no way to see if png intersect with each other,
+             * maybe you should create something in size (rect or circle) to have a hit area
+             * and then see if the size has intersected a collision has been made.
+             * 
+             * Size should contain a rect or circle?
+             */
+
+            #region init ball
             BallEntity ball = new BallEntity()
             {
                 position = new Position()
@@ -57,14 +66,67 @@ namespace Pongaline
                     width = r.Next(50),
                 },
 
-                velocity = new Velocity() 
-                { 
+                velocity = new Velocity()
+                {
                     x = 10,
                     y = 15,
                 },
             };
 
             gameContainer.AddEntity(ball);
+
+            #endregion
+
+            #region init PaddlePlayerOne
+
+            PaddleEntity paddlePlayerOne = new PaddleEntity()
+            {
+                position = new Position()
+                {
+                    x = -300,
+                    y = 0,
+                },
+
+                size = new Pongaline.Classes.Size
+                {
+                    height = 100,
+                    width = 30,
+                },
+
+                velocity = new Velocity()
+                {
+                    x = 0,
+                    y = 5,
+                },
+            };
+            gameContainer.AddEntity(paddlePlayerOne);
+            #endregion
+
+            #region Init paddlePLayerTwo
+
+            PaddleEntity paddlePlayerTwo = new PaddleEntity()
+            {
+                position = new Position()
+                {
+                    x = 300,
+                    y = 0,
+                },
+
+                size = new Pongaline.Classes.Size
+                {
+                    height = 100,
+                    width = 30,
+                },
+
+                velocity = new Velocity()
+                {
+                    x = 0,
+                    y = -5,
+                },
+            };
+
+            gameContainer.AddEntity(paddlePlayerTwo);
+            #endregion
         }
 
         void runGameTimer_Tick(object sender, object e)

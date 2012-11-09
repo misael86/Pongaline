@@ -109,6 +109,7 @@
     </Compile>
     <Compile Include="Classes\BallEntity.cs" />
     <Compile Include="Classes\GameEntity.cs" />
+    <Compile Include="Classes\PaddleEntity.cs" />
     <Compile Include="Classes\Position.cs" />
     <Compile Include="Classes\Size.cs" />
     <Compile Include="Classes\Velocity.cs" />
