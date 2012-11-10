@@ -91,8 +91,8 @@ namespace Pongaline.Classes
                     GlobalMethods.FromCornerYToMiddleYAxis(GlobalVariables.fieldMargin);
             }
 
-            this.position.x = (float)translateTransform.X;
-            this.position.y = (float)translateTransform.Y;
+            this.position.x = (float)ellipseTransform.X;
+            this.position.y = (float)ellipseTransform.Y;
 
         }
 
