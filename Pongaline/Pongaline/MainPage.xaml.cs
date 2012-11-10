@@ -68,7 +68,7 @@ namespace Pongaline
                 imageURI = new Uri("ms-appx:///Assets/SmallLogo.png"),
             };
 
-            gameContainer.AddEntity(ball);
+            GameContainer.AddEntity(ball);
 
             #endregion
 
@@ -78,7 +78,7 @@ namespace Pongaline
             {
                 position = new Position()
                 {
-                    x = 0,
+                    x = 20,
                     y = 0,
                 },
 
@@ -90,18 +90,20 @@ namespace Pongaline
 
                 imageURI = new Uri("ms-appx:///Assets/SmallLogo.png"),
             };
+
+            GameContainer.AddEntity(player1);
 
             #endregion
 
             #region PLAYER 2
 
-            gameContainer.AddEntity(player1);
+            
 
             PlayerEntity player2 = new PlayerEntity()
             {
                 position = new Position()
                 {
-                    x = 0,
+                    x = -20,
                     y = 0,
                 },
 
@@ -114,11 +116,11 @@ namespace Pongaline
                 imageURI = new Uri("ms-appx:///Assets/SmallLogo.png"),
             };
 
-            gameContainer.AddEntity(player2);
+            GameContainer.AddEntity(player2);
 
             #endregion
 
-            #region init PaddlePlayerOne
+            #region PADDLE 1
 
             PaddleEntity paddlePlayerOne = new PaddleEntity()
             {
@@ -142,10 +144,10 @@ namespace Pongaline
 
                 imageURI = new Uri("ms-appx:///Assets/SmallLogo.png"),
             };
-            gameContainer.AddEntity(paddlePlayerOne);
+            GameContainer.AddEntity(paddlePlayerOne);
             #endregion
 
-            #region Init paddlePLayerTwo
+            #region PADDLE 2
 
             PaddleEntity paddlePlayerTwo = new PaddleEntity()
             {
@@ -170,8 +172,9 @@ namespace Pongaline
                 imageURI = new Uri("ms-appx:///Assets/SmallLogo.png"),
             };
 
-            gameContainer.AddEntity(paddlePlayerTwo);
+            GameContainer.AddEntity(paddlePlayerTwo);
             #endregion
+
         }
 
         void runGameTimer_Tick(object sender, object e)
