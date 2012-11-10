@@ -16,17 +16,17 @@
     <AppXManifest Include="C:\Users\Misael\Documents\Visual Studio 2012\Projects\Pongaline\Pongaline\Pongaline\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2012-11-09T20:03:52.103</Modified>
+      <Modified>2012-11-09T21:47:46.129</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Misael\Documents\Visual Studio 2012\Projects\Pongaline\Pongaline\Pongaline\bin\Debug\Pongaline.exe">
       <PackagePath>Pongaline.exe</PackagePath>
-      <Modified>2012-11-09T20:47:17.416</Modified>
+      <Modified>2012-11-10T00:51:31.702</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Misael\Documents\Visual Studio 2012\Projects\Pongaline\Pongaline\Pongaline\bin\Debug\Pongaline.pdb">
       <PackagePath>Pongaline.pdb</PackagePath>
-      <Modified>2012-11-09T20:47:17.406</Modified>
+      <Modified>2012-11-10T00:51:31.688</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Misael\Documents\Visual Studio 2012\Projects\Pongaline\Pongaline\Pongaline\Assets\Logo.png">
       <PackagePath>Assets\Logo.png</PackagePath>
@@ -58,7 +58,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Misael\Documents\Visual Studio 2012\Projects\Pongaline\Pongaline\Pongaline\bin\Debug\MainPage.xaml">
       <PackagePath>MainPage.xaml</PackagePath>
-      <Modified>2012-11-09T20:01:50.582</Modified>
+      <Modified>2012-11-10T00:51:30.771</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Misael\Documents\Visual Studio 2012\Projects\Pongaline\Pongaline\Pongaline\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>

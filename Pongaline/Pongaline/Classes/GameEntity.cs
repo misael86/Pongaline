@@ -15,8 +15,8 @@ namespace Pongaline.Classes
         public Size size { get; set; }
         public Image image { get; set; }
 
-        public abstract void Update(GameContainer gc);
+        public abstract void Update();
         public abstract void Paint();
-        public abstract void Move(GameContainer gc);
+        public abstract void Move();
     }
 }

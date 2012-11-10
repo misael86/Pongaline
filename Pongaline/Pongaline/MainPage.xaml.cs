@@ -29,7 +29,7 @@ namespace Pongaline
         {
             this.InitializeComponent();
 
-            gameContainer.mainGrid = this.MainGrid;
+            GameContainer.mainGrid = this.MainGrid;
 
             DispatcherTimer runGameTimer = new DispatcherTimer();
             runGameTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
@@ -41,6 +41,8 @@ namespace Pongaline
 
         private void InitiateData()
         {
+            #region BALL
+
             Random r = new Random();
 
             BallEntity ball = new BallEntity()
@@ -57,14 +59,58 @@ namespace Pongaline
                     width = r.Next(50),
                 },
 
-                velocity = new Velocity() 
-                { 
+                velocity = new Velocity()
+                {
                     x = 10,
                     y = 15,
                 },
             };
 
             gameContainer.AddEntity(ball);
+
+            #endregion
+
+            #region PLAYER 1
+
+            PlayerEntity player1 = new PlayerEntity()
+            {
+                position = new Position()
+                {
+                    x = 0,
+                    y = 0,
+                },
+
+                size = new Pongaline.Classes.Size()
+                {
+                    height = 15,
+                    width = 15,
+                },
+            };
+
+            #endregion
+
+            #region PLAYER 2
+
+            gameContainer.AddEntity(player1);
+
+            PlayerEntity player2 = new PlayerEntity()
+            {
+                position = new Position()
+                {
+                    x = 0,
+                    y = 0,
+                },
+
+                size = new Pongaline.Classes.Size()
+                {
+                    height = 15,
+                    width = 15,
+                },
+            };
+
+            gameContainer.AddEntity(player2);
+
+            #endregion
         }
 
         void runGameTimer_Tick(object sender, object e)

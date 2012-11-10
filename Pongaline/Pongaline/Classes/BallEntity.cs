@@ -7,16 +7,15 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.Xaml.Shapes;
 
 namespace Pongaline.Classes
 {
     class BallEntity : GameEntity
     {
-
-
-        public override void Update(GameContainer gameContainer)
+        public override void Update()
         {
-            this.Move(gameContainer);
+            this.Move();
         }
 
         public override void Paint()
@@ -40,20 +39,21 @@ namespace Pongaline.Classes
                 RenderTransform = translateTransform,
             };
 
+            GameContainer.mainGrid.Children.Add(this.image);
         }
 
-        public override void Move(GameContainer gameContainer)
+        public override void Move()
         {
             TranslateTransform translateTransform = this.image.RenderTransform as TranslateTransform;
 
-            if (translateTransform.X > gameContainer.mainGrid.ActualWidth / 2 ||
-                translateTransform.X < -gameContainer.mainGrid.ActualWidth / 2) 
+            if (translateTransform.X > GameContainer.mainGrid.ActualWidth / 2 ||
+                translateTransform.X < -GameContainer.mainGrid.ActualWidth / 2) 
             { 
                 this.velocity.x *= -1; 
             }
 
-            if (translateTransform.Y > gameContainer.mainGrid.ActualHeight / 2 || 
-                translateTransform.Y < -gameContainer.mainGrid.ActualHeight / 2) 
+            if (translateTransform.Y > GameContainer.mainGrid.ActualHeight / 2 ||
+                translateTransform.Y < -GameContainer.mainGrid.ActualHeight / 2) 
             { 
                 this.velocity.y *= -1; 
             }
