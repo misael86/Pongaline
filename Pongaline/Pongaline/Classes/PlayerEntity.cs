@@ -60,17 +60,26 @@ namespace Pongaline.Classes
         {
             TranslateTransform translateTransform = this.image.RenderTransform as TranslateTransform;
 
-            if (translateTransform.X + e.Delta.Translation.X < (GameContainer.mainGrid.ActualWidth - 200) / 2 &&
-                translateTransform.X + e.Delta.Translation.X > -(GameContainer.mainGrid.ActualWidth - 200) / 2)
+            if (translateTransform.X + e.Delta.Translation.X < (GameContainer.mainGrid.ActualWidth - 60) / 2 &&
+                translateTransform.X + e.Delta.Translation.X > -(GameContainer.mainGrid.ActualWidth - 60) / 2)
             {
                 translateTransform.X += e.Delta.Translation.X;
             }
+            else
+            {
+                translateTransform.X = e.Delta.Translation.X / Math.Abs(e.Delta.Translation.X) * (GameContainer.mainGrid.ActualWidth - 60) / 2;
+            }
 
-            if (translateTransform.Y + e.Delta.Translation.Y < (GameContainer.mainGrid.ActualHeight - 200) / 2 &&
-                translateTransform.Y + e.Delta.Translation.Y > -(GameContainer.mainGrid.ActualHeight - 200) / 2)
+            if (translateTransform.Y + e.Delta.Translation.Y < (GameContainer.mainGrid.ActualHeight - 60) / 2 &&
+                translateTransform.Y + e.Delta.Translation.Y > -(GameContainer.mainGrid.ActualHeight - 60) / 2)
             {
                 translateTransform.Y += e.Delta.Translation.Y;
             }
+            else
+            {
+                translateTransform.Y = e.Delta.Translation.Y / Math.Abs(e.Delta.Translation.Y) * (GameContainer.mainGrid.ActualHeight - 60) / 2;
+            }
+
         }
 
         public override void Move()
