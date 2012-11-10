@@ -12,8 +12,8 @@ namespace Pongaline.Containers
     {
         public static Grid mainGrid { get; set; }
 
-        public List<GameEntity> _gameEntities = new List<GameEntity>();
-        public List<GameEntity> gameEntities { get { return _gameEntities; } set { _gameEntities = value; } }
+        public static List<GameEntity> _gameEntities = new List<GameEntity>();
+        public static List<GameEntity> gameEntities { get { return _gameEntities; } set { _gameEntities = value; } }
 
         public GameContainer() 
         { 
@@ -22,16 +22,22 @@ namespace Pongaline.Containers
 
         internal void Update()
         {
-            foreach (GameEntity entity in gameEntities)
+            foreach (GameEntity entity in gameEntities.ToList())
             {
                 entity.Update();
             }
         }
 
-        public void AddEntity(GameEntity entity)
+        public static void AddEntity(GameEntity entity)
         {
             gameEntities.Add(entity);
             entity.Paint();
+        }
+
+        public static void RemoveEntity(GameEntity entity)
+        {
+            gameEntities.Remove(entity);
+            mainGrid.Children.Remove(entity.image);
         }
     }
 }
