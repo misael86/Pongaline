@@ -14,9 +14,9 @@ namespace Pongaline.Classes
     {
 
 
-        public override void Update(GameContainer gc)
+        public override void Update()
         {
-            this.Move(gc);
+            this.Move();
         }
 
         public override void Paint()
@@ -39,17 +39,18 @@ namespace Pongaline.Classes
                 Height = this.size.height,
                 RenderTransform = translateTransform,
             };
-            
+
+            GameContainer.mainGrid.Children.Add(this.image);
         }
 
-        public override void Move(GameContainer gc)
+        public override void Move()
         {
             TranslateTransform translateTransform = this.image.RenderTransform as TranslateTransform;
 
             this.velocity.x *= 0;
 
-            if (translateTransform.Y > gc.mainGrid.ActualHeight / 2 || 
-                translateTransform.Y < -gc.mainGrid.ActualHeight / 2) 
+            if (translateTransform.Y > GameContainer.mainGrid.ActualHeight / 2 ||
+                translateTransform.Y < -GameContainer.mainGrid.ActualHeight / 2) 
             { 
                 this.velocity.y *= -1; 
             }
