@@ -38,7 +38,7 @@ namespace Pongaline.Classes
             translateTransform.X += this.velocity.x;
             translateTransform.Y += this.velocity.y;
 
-            if (translateTransform.X > GlobalMethods.FromMiddleXToCornerXAxis((float)(GameContainer.mainGrid.ActualWidth - GlobalVariables.fieldMargin)))
+            if (translateTransform.X > GlobalMethods.FromCornerXToMiddleXAxis((float)(GameContainer.mainGrid.ActualWidth - GlobalVariables.fieldMargin)))
             {
                 var border = GameContainer.mainGrid.Children.FirstOrDefault(ui => ui is Border) as Border;
                 var grid = border.Child as Grid;
@@ -47,7 +47,7 @@ namespace Pongaline.Classes
                 Reset();
             }
 
-            if (translateTransform.X < GlobalMethods.FromMiddleXToCornerXAxis(GlobalVariables.fieldMargin))
+            if (translateTransform.X < GlobalMethods.FromCornerXToMiddleXAxis(GlobalVariables.fieldMargin))
             {
                 var border = GameContainer.mainGrid.Children.FirstOrDefault(ui => ui is Border) as Border;
                 var grid = border.Child as Grid;
@@ -69,8 +69,15 @@ namespace Pongaline.Classes
 
             Random random = new Random();
 
-            velocity.x = random.Next(-20, 20);
-            velocity.y = random.Next(-20, 20);
+            do
+            {
+                velocity.x = random.Next(-20, 20);
+            } while (velocity.x == 0);
+
+            do
+            {
+                velocity.y = random.Next(-20, 20);
+            } while (velocity.y == 0);
         }
     }
 }

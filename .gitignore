@@ -5,6 +5,7 @@ UpgradeLog.XML
 UpgradeLog.htm
 _UpgradeReport_Files/
 AppPackages/
+*.11.suo
 
 #OS junk files
 [Tt]humbs.db
