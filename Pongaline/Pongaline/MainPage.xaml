@@ -11,6 +11,10 @@
 
         <Border BorderBrush="{StaticResource AppBarItemForegroundThemeBrush}" BorderThickness="3" CornerRadius="5" Margin="20">
             <Grid>
+
+                <TextBlock x:Name="TextBlock_LeftScore" HorizontalAlignment="Center" TextWrapping="Wrap" Text="0" VerticalAlignment="Center" Margin="0,0,400,0" Opacity="0.2" FontSize="200"/>
+                <TextBlock x:Name="TextBlock_RightScore" HorizontalAlignment="Center" TextWrapping="Wrap" Text="0" VerticalAlignment="Center" Opacity="0.2" Margin="400,0,0,0" FontSize="200"/>
+
                 <Border BorderBrush="{StaticResource AppBarItemForegroundThemeBrush}" Width="300" HorizontalAlignment="Left" BorderThickness="0,0,3,0" Background="#4CFB0000">
                 </Border>
                 <Border BorderBrush="{StaticResource AppBarItemForegroundThemeBrush}" Width="300" HorizontalAlignment="Right" BorderThickness="3,0,0,0" Background="#4CFB0000">
@@ -20,6 +24,7 @@
                 <Canvas Width="200" Height="200">
                     <Ellipse Width="200" Height="200" Stroke="{StaticResource AppBarItemForegroundThemeBrush}" StrokeThickness="3" />
                 </Canvas>
+                
             </Grid>
         </Border>
 
