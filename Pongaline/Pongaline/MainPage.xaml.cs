@@ -1,4 +1,5 @@
 ﻿using Pongaline.Classes;
+using Pongaline.Common;
 using Pongaline.Containers;
 using System;
 using System.Collections.Generic;
@@ -78,7 +79,7 @@ namespace Pongaline
             {
                 position = new Position()
                 {
-                    x = 20,
+                    x = GlobalMethods.FromCornerXToMiddleXAxis((float)GameContainer.mainGrid.ActualWidth - 20),
                     y = 0,
                 },
 
