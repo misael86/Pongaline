@@ -79,14 +79,14 @@ namespace Pongaline
             {
                 position = new Position()
                 {
-                    x = GlobalMethods.FromCornerXToMiddleXAxis((float)GameContainer.mainGrid.ActualWidth - 20),
+                    x = GlobalMethods.FromCornerXToMiddleXAxis((float)GameContainer.mainGrid.ActualWidth - 600),
                     y = 0,
                 },
 
                 size = new Pongaline.Classes.Size()
                 {
-                    height = 15,
-                    width = 15,
+                    height = 40,
+                    width = 40,
                 },
 
                 imageURI = new Uri("ms-appx:///Assets/SmallLogo.png"),
@@ -104,14 +104,14 @@ namespace Pongaline
             {
                 position = new Position()
                 {
-                    x = -20,
+                    x = GlobalMethods.FromCornerXToMiddleXAxis((float)GameContainer.mainGrid.ActualWidth + 600),
                     y = 0,
                 },
 
                 size = new Pongaline.Classes.Size()
                 {
-                    height = 15,
-                    width = 15,
+                    height = 40,
+                    width = 40,
                 },
 
                 imageURI = new Uri("ms-appx:///Assets/SmallLogo.png"),
