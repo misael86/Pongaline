@@ -1,4 +1,5 @@
-﻿using Pongaline.Containers;
+﻿using Pongaline.Common;
+using Pongaline.Containers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,42 +19,18 @@ namespace Pongaline.Classes
             this.Move();
         }
 
-        public override void Paint()
-        {
-            BitmapImage bitMapImage = new BitmapImage()
-            {
-                UriSource = new Uri("ms-appx:///Assets/SmallLogo.png"),
-            };
-
-            TranslateTransform translateTransform = new TranslateTransform()
-            {
-                X = this.position.x,
-                Y = this.position.y,
-            };
-
-            this.image = new Image()
-            {
-                Source = bitMapImage,
-                Width = this.size.width,
-                Height = this.size.height,
-                RenderTransform = translateTransform,
-            };
-
-            GameContainer.mainGrid.Children.Add(this.image);
-        }
-
         public override void Move()
         {
             TranslateTransform translateTransform = this.image.RenderTransform as TranslateTransform;
 
-            if (translateTransform.X > GameContainer.mainGrid.ActualWidth / 2 ||
-                translateTransform.X < -GameContainer.mainGrid.ActualWidth / 2) 
+            if (translateTransform.X > GlobalMethods.FromCornerXToMiddleXAxis((float)(GameContainer.mainGrid.ActualWidth - 30)) ||
+                translateTransform.X < GlobalMethods.FromCornerXToMiddleXAxis(30)) 
             { 
                 this.velocity.x *= -1; 
             }
 
-            if (translateTransform.Y > GameContainer.mainGrid.ActualHeight / 2 ||
-                translateTransform.Y < -GameContainer.mainGrid.ActualHeight / 2) 
+            if (translateTransform.Y > GlobalMethods.FromCornerYToMiddleYAxis((float)(GameContainer.mainGrid.ActualHeight - 30)) ||
+                translateTransform.Y < GlobalMethods.FromCornerYToMiddleYAxis(30) ) 
             { 
                 this.velocity.y *= -1; 
             }

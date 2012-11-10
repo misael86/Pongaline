@@ -1,4 +1,5 @@
-﻿using Pongaline.Containers;
+﻿using Pongaline.Common;
+using Pongaline.Containers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -24,23 +25,12 @@ namespace Pongaline.Classes
 
         public override void Paint()
         {
-            BitmapImage bitMapImage = new BitmapImage()
-            {
-                UriSource = new Uri("ms-appx:///Assets/SmallLogo.png"),
-            };
+            base.Paint();
 
             TranslateTransform translateTransform = new TranslateTransform()
             {
                 X = this.position.x,
                 Y = this.position.y,
-            };
-
-            this.image = new Image()
-            {
-                Source = bitMapImage,
-                Width = this.size.width,
-                Height = this.size.height,
-                RenderTransform = translateTransform,
             };
 
             SolidColorBrush mySolidColorBrush = new SolidColorBrush();
@@ -63,7 +53,6 @@ namespace Pongaline.Classes
                 isLeftSide = false;
             }
 
-            GameContainer.mainGrid.Children.Add(this.image);
             GameContainer.mainGrid.Children.Add(this.ellipse);
         }
 
@@ -74,26 +63,32 @@ namespace Pongaline.Classes
 
         void ellipse_ManipulationDelta(object sender, Windows.UI.Xaml.Input.ManipulationDeltaRoutedEventArgs e)
         {
-            TranslateTransform translateTransform = this.image.RenderTransform as TranslateTransform;
+            TranslateTransform imageTransform = this.image.RenderTransform as TranslateTransform;
+            TranslateTransform ellipseTransform = this.ellipse.RenderTransform as TranslateTransform;
 
-            if (translateTransform.X + e.Delta.Translation.X < (GameContainer.mainGrid.ActualWidth - 60) / 2 &&
-                translateTransform.X + e.Delta.Translation.X > -(GameContainer.mainGrid.ActualWidth - 60) / 2)
+            float newX = GlobalMethods.FromMiddleXToCornerXAxis((float)(imageTransform.X + e.Delta.Translation.X));
+            float newY = GlobalMethods.FromMiddleYToCornerYAxis((float)(imageTransform.Y + e.Delta.Translation.Y));
+
+            if (newX > GlobalVariables.fieldMargin && newX < GameContainer.mainGrid.ActualWidth - GlobalVariables.fieldMargin)
             {
-                translateTransform.X += e.Delta.Translation.X;
+                ellipseTransform.X = imageTransform.X = GlobalMethods.FromCornerXToMiddleXAxis(newX);
             }
             else
             {
-                translateTransform.X = e.Delta.Translation.X / Math.Abs(e.Delta.Translation.X) * (GameContainer.mainGrid.ActualWidth - 60) / 2;
+                ellipseTransform.X = imageTransform.X = e.Delta.Translation.X > 0 ?
+                    GlobalMethods.FromCornerXToMiddleXAxis((float)(GameContainer.mainGrid.ActualWidth - GlobalVariables.fieldMargin)) :
+                    GlobalMethods.FromCornerXToMiddleXAxis(GlobalVariables.fieldMargin);
             }
 
-            if (translateTransform.Y + e.Delta.Translation.Y < (GameContainer.mainGrid.ActualHeight - 60) / 2 &&
-                translateTransform.Y + e.Delta.Translation.Y > -(GameContainer.mainGrid.ActualHeight - 60) / 2)
+            if (newY > GlobalVariables.fieldMargin && newY < GameContainer.mainGrid.ActualHeight - GlobalVariables.fieldMargin)
             {
-                translateTransform.Y += e.Delta.Translation.Y;
+                ellipseTransform.Y = imageTransform.Y = GlobalMethods.FromCornerYToMiddleYAxis(newY);
             }
             else
             {
-                translateTransform.Y = e.Delta.Translation.Y / Math.Abs(e.Delta.Translation.Y) * (GameContainer.mainGrid.ActualHeight - 60) / 2;
+                ellipseTransform.Y = imageTransform.Y = e.Delta.Translation.Y > 0 ?
+                    GlobalMethods.FromCornerYToMiddleYAxis((float)(GameContainer.mainGrid.ActualHeight - GlobalVariables.fieldMargin)) :
+                    GlobalMethods.FromCornerYToMiddleYAxis(GlobalVariables.fieldMargin);
             }
 
             this.position.x = (float)translateTransform.X;
@@ -103,6 +98,7 @@ namespace Pongaline.Classes
 
         public override void Move()
         {
+
 
         }
 
@@ -139,6 +135,7 @@ namespace Pongaline.Classes
             };
 
             GameContainer.AddEntity(bullet);
+
         }
     }
 }

@@ -55,8 +55,8 @@ namespace Pongaline
 
                 size = new Pongaline.Classes.Size()
                 {
-                    height = r.Next(50),
-                    width = r.Next(50),
+                    height = 30,
+                    width = 30,
                 },
 
                 velocity = new Velocity()
@@ -64,6 +64,8 @@ namespace Pongaline
                     x = 10,
                     y = 15,
                 },
+
+                imageURI = new Uri("ms-appx:///Assets/SmallLogo.png"),
             };
 
             GameContainer.AddEntity(ball);
@@ -85,6 +87,8 @@ namespace Pongaline
                     height = 15,
                     width = 15,
                 },
+
+                imageURI = new Uri("ms-appx:///Assets/SmallLogo.png"),
             };
 
             GameContainer.AddEntity(player1);
@@ -108,6 +112,8 @@ namespace Pongaline
                     height = 15,
                     width = 15,
                 },
+
+                imageURI = new Uri("ms-appx:///Assets/SmallLogo.png"),
             };
 
             GameContainer.AddEntity(player2);
@@ -135,6 +141,8 @@ namespace Pongaline
                     x = 0,
                     y = 5,
                 },
+
+                imageURI = new Uri("ms-appx:///Assets/SmallLogo.png"),
             };
             GameContainer.AddEntity(paddlePlayerOne);
             #endregion
@@ -160,6 +168,8 @@ namespace Pongaline
                     x = 0,
                     y = -5,
                 },
+
+                imageURI = new Uri("ms-appx:///Assets/SmallLogo.png"),
             };
 
             GameContainer.AddEntity(paddlePlayerTwo);

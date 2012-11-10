@@ -115,6 +115,8 @@
     <Compile Include="Classes\Position.cs" />
     <Compile Include="Classes\Size.cs" />
     <Compile Include="Classes\Velocity.cs" />
+    <Compile Include="Common\GlobalMethods.cs" />
+    <Compile Include="Common\GlobalVariables.cs" />
     <Compile Include="Containers\GameContainer.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
