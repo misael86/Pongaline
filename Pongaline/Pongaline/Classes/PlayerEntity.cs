@@ -17,7 +17,7 @@ namespace Pongaline.Classes
     class PlayerEntity : GameEntity
     {
         Ellipse ellipse = new Ellipse();
-        bool isLeftSide { get; set; }
+        public bool isLeftSide { get; set; }
 
         public Velocity lastVelocity { get; set; } 
 
@@ -35,6 +35,15 @@ namespace Pongaline.Classes
         {
             base.Paint();
 
+            if (this.position.x < 0)
+            {
+                isLeftSide = true;
+            }
+            else
+            {
+                isLeftSide = false;
+            }
+
             this.lastVelocity = new Velocity() { x = 0, y = 0 };
 
             TranslateTransform translateTransform = new TranslateTransform()
@@ -44,7 +53,15 @@ namespace Pongaline.Classes
             };
 
             SolidColorBrush mySolidColorBrush = new SolidColorBrush();
-            mySolidColorBrush.Color = Color.FromArgb(55, 255, 255, 0);
+
+            if (isLeftSide)
+            {
+                mySolidColorBrush.Color = Color.FromArgb(50, 124, 252, 0);
+            }
+            else
+            { 
+                mySolidColorBrush.Color = Color.FromArgb(50, 255, 215, 0);
+            }
 
             this.ellipse.Fill = mySolidColorBrush;
             this.ellipse.Width = this.size.width;
@@ -53,15 +70,6 @@ namespace Pongaline.Classes
             this.ellipse.ManipulationDelta += ellipse_ManipulationDelta;
             this.ellipse.ManipulationMode = Windows.UI.Xaml.Input.ManipulationModes.All;
             this.ellipse.Tapped += ellipse_Tapped;
-
-            if (this.position.x < 0)
-            {
-                isLeftSide = true;
-            }
-            else
-            {
-                isLeftSide = false;
-            }
 
             GameContainer.mainGrid.Children.Add(this.ellipse);
         }

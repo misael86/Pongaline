@@ -56,8 +56,8 @@ namespace Pongaline
 
                 size = new Pongaline.Classes.Size()
                 {
-                    height = 30,
-                    width = 30,
+                    height = 50,
+                    width = 50,
                 },
 
                 velocity = new Velocity()
@@ -66,7 +66,7 @@ namespace Pongaline
                     y = 15,
                 },
 
-                imageURI = new Uri("ms-appx:///Assets/SmallLogo.png"),
+                imageURI = new Uri("ms-appx:///Assets/DontSueUs/ball.png"),
             };
 
             GameContainer.AddEntity(ball);
@@ -89,7 +89,7 @@ namespace Pongaline
                     width = 80,
                 },
 
-                imageURI = new Uri("ms-appx:///Assets/SmallLogo.png"),
+                imageURI = new Uri("ms-appx:///Assets/DontSueUs/mario.png"),
             };
 
             GameContainer.AddEntity(player1);
@@ -114,7 +114,7 @@ namespace Pongaline
                     width = 80,
                 },
 
-                imageURI = new Uri("ms-appx:///Assets/SmallLogo.png"),
+                imageURI = new Uri("ms-appx:///Assets/DontSueUs/luigi.png"),
             };
 
             GameContainer.AddEntity(player2);

@@ -132,6 +132,12 @@
     <None Include="Pongaline_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\DontSueUs\background.jpg" />
+    <Content Include="Assets\DontSueUs\ball.png" />
+    <Content Include="Assets\DontSueUs\bulletLeft.png" />
+    <Content Include="Assets\DontSueUs\bulletRight.png" />
+    <Content Include="Assets\DontSueUs\luigi.png" />
+    <Content Include="Assets\DontSueUs\mario.png" />
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
