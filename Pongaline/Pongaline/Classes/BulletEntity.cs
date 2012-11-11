@@ -15,7 +15,7 @@ namespace Pongaline.Classes
 {
     class BulletEntity : GameEntity
     {
-
+        public bool isSpeedUp { get; set; }
 
         public override void Update()
         {

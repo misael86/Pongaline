@@ -50,6 +50,7 @@ namespace Pongaline.Classes
         public override void Update()
         {
             Move();
+            CheckCollition();
         }
 
         public override void Move()
@@ -70,6 +71,8 @@ namespace Pongaline.Classes
 
             translateTransform.X += this.velocity.x;
             translateTransform.Y += this.velocity.y;
+            this.position.x += this.velocity.x;
+            this.position.y += this.velocity.y;
         }
 
         void lifeTimer_Tick(object o, object e)
@@ -80,6 +83,56 @@ namespace Pongaline.Classes
         public override void Paint()
         {
             base.Paint();
+        }
+
+        private void CheckCollition()
+        {
+            var bullets = GameContainer.gameEntities.Where(ge => ge is BulletEntity);
+
+            foreach (var bullet in bullets.ToList())
+            {
+                if (IsCollision(this, bullet))
+                {
+                    if ((bullet as BulletEntity).velocity.x > 0)
+                    {
+                        PlayerEntity player = GameContainer.gameEntities.First(ge => ge is PlayerEntity && (ge as PlayerEntity).isLeftSide) as PlayerEntity;
+                        player.bulletSpeed = 4;
+                    }
+                    else
+                    {
+                        PlayerEntity player = GameContainer.gameEntities.First(ge => ge is PlayerEntity && !(ge as PlayerEntity).isLeftSide) as PlayerEntity;
+                        player.bulletSpeed = 4;
+                    }
+
+                    GameContainer.RemoveEntity(this);
+                    GameContainer.RemoveEntity(bullet);
+
+                    //else if (this.velocity.x < 0 && (player as PlayerEntity).isLeftSide)
+                    //{
+                    //    GlobalMethods.GiveRightPlayerPoint();
+                    //    GameContainer.RemoveEntity(this);
+                    //}
+                }
+            }
+        }
+
+        private bool IsCollision(GameEntity ge1, GameEntity ge2)
+        {
+
+            var X1 = 0;
+            var Y1 = ge1.position.y + (float)GameContainer.mainGrid.ActualHeight / 2;
+            var X2 = GlobalMethods.FromCornerXToMiddleXAxis(ge2.position.x);
+            var Y2 = GlobalMethods.FromCornerYToMiddleYAxis(ge2.position.y);
+
+            var R1 = ge1.size.width / 2.0;
+            var R2 = ge2.size.width / 2.0;
+            var Radius = R1 + R2;
+
+            var dX = X2 - X1;
+            var dY = Y2 - Y1;
+
+            return Math.Sqrt((dX * dX) + (dY * dY)) < Math.Sqrt(Radius * Radius);
+
         }
 
         /*
