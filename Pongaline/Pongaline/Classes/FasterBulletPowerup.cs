@@ -8,7 +8,7 @@ namespace Pongaline.Classes
 {
     class FasterBulletPowerup
     {
-        this.
+        
 
 
     }

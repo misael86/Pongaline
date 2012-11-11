@@ -12,12 +12,12 @@ using Windows.UI.Xaml.Media;
 namespace Pongaline.Classes
 {
 
-    
+    enum PowerUps { FasterShot, BiggerSheild }
 
     class PowerUpEntity : GameEntity
     {
 
-        enum PowerUps { FasterShot, BiggerSheild }
+        
 
         Random r = new Random();
 

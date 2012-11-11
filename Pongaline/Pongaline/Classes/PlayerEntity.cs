@@ -18,6 +18,7 @@ namespace Pongaline.Classes
     {
         Ellipse ellipse = new Ellipse();
         bool isLeftSide { get; set; }
+        int bulletSpeed { get; set; }
 
         public Velocity lastVelocity { get; set; } 
 
@@ -141,11 +142,11 @@ namespace Pongaline.Classes
             int speedX;
             if (isLeftSide)
             {
-                speedX = 2;
+                speedX = bulletSpeed;
             }
             else
             {
-                speedX = -2;
+                speedX = -bulletSpeed;
             }
 
             BulletEntity bullet = new BulletEntity()
