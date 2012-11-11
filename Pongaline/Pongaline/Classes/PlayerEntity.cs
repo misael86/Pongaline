@@ -17,12 +17,10 @@ namespace Pongaline.Classes
     class PlayerEntity : GameEntity
     {
         Ellipse ellipse = new Ellipse();
-<<<<<<< HEAD
-        bool isLeftSide { get; set; }
         int bulletSpeed { get; set; }
-=======
+
         public bool isLeftSide { get; set; }
->>>>>>> 154b7393429da15e60b49fb1987ffe63c4e67300
+
 
         public Velocity lastVelocity { get; set; } 
 
