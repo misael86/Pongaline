@@ -29,8 +29,8 @@ namespace Pongaline.Classes
             
             TranslateTransform translateTransform = new TranslateTransform()
             {
-                X = GlobalMethods.GetCornerPositionFromMiddlePosition(this.position).x,
-                Y = GlobalMethods.GetCornerPositionFromMiddlePosition(this.position).y,
+                X = this.position.x,
+                Y = this.position.y,
             };
 
             this.image = new Image()

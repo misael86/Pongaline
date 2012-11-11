@@ -12,8 +12,6 @@ using Windows.UI.Xaml.Media;
 namespace Pongaline.Classes
 {
 
-    
-
     class PowerUpEntity : GameEntity
     {
 
@@ -25,7 +23,6 @@ namespace Pongaline.Classes
 
         public PowerUpEntity()
         {
-
             DispatcherTimer lifeTimer = new DispatcherTimer();
             lifeTimer.Interval = new TimeSpan(0, 0, 0, 30, 0);
             lifeTimer.Tick += lifeTimer_Tick;
@@ -37,11 +34,11 @@ namespace Pongaline.Classes
             switch (PowerUpRandom)
             {
                 case PowerUps.FasterShot:
-                    
+                    this.imageURI = new Uri("ms-appx:///Assets/DontSueUs/powRed.png");
                     break;
 
                 case PowerUps.BiggerSheild:
-
+                    this.imageURI = new Uri("ms-appx:///Assets/DontSueUs/powGreen.png");
                     break;
             }
 
@@ -56,14 +53,8 @@ namespace Pongaline.Classes
         {
             TranslateTransform translateTransform = this.image.RenderTransform as TranslateTransform;
 
-            //if (translateTransform.X > GlobalMethods.FromCornerXToMiddleXAxis((float)(GameContainer.mainGrid.ActualWidth - 30)) ||
-            //    translateTransform.X < GlobalMethods.FromCornerXToMiddleXAxis(30))
-            //{
-            //    this.velocity.x *= -1;
-            //}
-
-            if (translateTransform.Y > GlobalMethods.FromCornerYToMiddleYAxis((float)(GameContainer.mainGrid.ActualHeight - 30)) ||
-                translateTransform.Y < GlobalMethods.FromCornerYToMiddleYAxis(30))
+            if (translateTransform.Y < GlobalMethods.FromCornerYToMiddleYAxis(0) ||
+                translateTransform.Y > GlobalMethods.FromCornerYToMiddleYAxis(GlobalVariables.fieldHeight))
             {
                 this.velocity.y *= -1;
             }
@@ -81,11 +72,6 @@ namespace Pongaline.Classes
         {
             base.Paint();
         }
-
-        /*
-         * Maybe I should count loops and randomize in some way?
-         */
-
 
     }
 

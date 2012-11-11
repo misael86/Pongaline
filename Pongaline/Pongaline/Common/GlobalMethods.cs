@@ -31,22 +31,22 @@ namespace Pongaline.Common
 
         public static float FromMiddleYToCornerYAxis(float y)
         {
-            return (float)(y + GameContainer.mainGrid.ActualHeight / 2.0);
+            return (float)(y + GlobalVariables.fieldWidth / 2.0);
         }
 
         public static float FromMiddleXToCornerXAxis(float x)
         {
-            return (float)(x + GameContainer.mainGrid.ActualWidth / 2.0);
+            return (float)(x + GlobalVariables.fieldWidth / 2.0);
         }
 
         public static float FromCornerYToMiddleYAxis(float y)
         {
-            return (float)(y - GameContainer.mainGrid.ActualHeight / 2.0);
+            return (float)(y - GlobalVariables.fieldHeight / 2.0);
         }
 
         public static float FromCornerXToMiddleXAxis(float x)
         {
-            return (float)(x - GameContainer.mainGrid.ActualWidth / 2.0);
+            return (float)(x - GlobalVariables.fieldWidth / 2.0);
         }
 
 

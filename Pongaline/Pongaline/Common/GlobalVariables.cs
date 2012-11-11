@@ -8,7 +8,8 @@ namespace Pongaline.Common
 {
     class GlobalVariables
     {
-        public static int fieldMargin = 30;
         public static int playerFieldWidth = 300;
+        public static int fieldWidth = 1300;
+        public static int fieldHeight = 700;
     }
 }

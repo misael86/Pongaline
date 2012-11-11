@@ -19,7 +19,9 @@ namespace Pongaline.Classes
         Ellipse ellipse = new Ellipse();
         public bool isLeftSide { get; set; }
 
-        public Velocity lastVelocity { get; set; } 
+        public Velocity lastVelocity { get; set; }
+
+        MiniPlayerEntity miniPlayer = new MiniPlayerEntity();
 
         public Ellipse getEllipse()
         {
@@ -72,6 +74,23 @@ namespace Pongaline.Classes
             this.ellipse.Tapped += ellipse_Tapped;
 
             GameContainer.mainGrid.Children.Add(this.ellipse);
+
+
+            miniPlayer.position = new Position()
+            {
+                x = this.position.x + 30,
+                y = this.position.y,
+            };
+
+            miniPlayer.size = new Pongaline.Classes.Size
+                {
+                    height = 100,
+                    width = 30,
+                };
+
+            miniPlayer.imageURI = new Uri("ms-appx:///Assets/DontSueUs/brick.png");
+
+            GameContainer.AddEntity(miniPlayer);
         }
 
         void ellipse_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
@@ -90,47 +109,49 @@ namespace Pongaline.Classes
                 y = (float)e.Delta.Translation.Y,
             };
 
-            float newX = GlobalMethods.FromMiddleXToCornerXAxis((float)(imageTransform.X + e.Delta.Translation.X));
-            float newY = GlobalMethods.FromMiddleYToCornerYAxis((float)(imageTransform.Y + e.Delta.Translation.Y));
+            var newX = imageTransform.X + e.Delta.Translation.X;
+            var newY = imageTransform.Y + e.Delta.Translation.Y;
 
-            if (isLeftSide && newX > GlobalVariables.fieldMargin && newX < GlobalVariables.fieldMargin + GlobalVariables.playerFieldWidth)
+            if (isLeftSide && newX > GlobalMethods.FromCornerXToMiddleXAxis(0)
+                           && newX < GlobalMethods.FromCornerXToMiddleXAxis(GlobalVariables.playerFieldWidth))
             {
-                ellipseTransform.X = imageTransform.X = GlobalMethods.FromCornerXToMiddleXAxis(newX);
+                ellipseTransform.X = imageTransform.X = newX;
             }
             else if (isLeftSide)
             {
-                double distanceRight = Math.Abs(GlobalMethods.FromMiddleXToCornerXAxis((float)imageTransform.X) - GlobalVariables.fieldMargin - GlobalVariables.playerFieldWidth);
-                double distanceLeft = Math.Abs(GlobalMethods.FromMiddleXToCornerXAxis((float)imageTransform.X) - GlobalVariables.fieldMargin);
+                double distanceRight = Math.Abs(newX - GlobalMethods.FromCornerXToMiddleXAxis(GlobalVariables.playerFieldWidth));
+                double distanceLeft = Math.Abs(newX - GlobalMethods.FromCornerXToMiddleXAxis(0));
 
                 ellipseTransform.X = imageTransform.X = distanceRight < distanceLeft ?
-                    GlobalMethods.FromCornerXToMiddleXAxis((float)(GlobalVariables.fieldMargin + GlobalVariables.playerFieldWidth)) :
-                    GlobalMethods.FromCornerXToMiddleXAxis(GlobalVariables.fieldMargin);
+                    GlobalMethods.FromCornerXToMiddleXAxis(GlobalVariables.playerFieldWidth) :
+                    GlobalMethods.FromCornerXToMiddleXAxis(0);
             }
 
-            if (!isLeftSide && newX > GameContainer.mainGrid.ActualWidth - GlobalVariables.playerFieldWidth - GlobalVariables.fieldMargin &&
-                               newX < GameContainer.mainGrid.ActualWidth - GlobalVariables.fieldMargin)
+            if (!isLeftSide && newX > GlobalMethods.FromCornerXToMiddleXAxis(GlobalVariables.fieldWidth - GlobalVariables.playerFieldWidth) &&
+                               newX < GlobalMethods.FromCornerXToMiddleXAxis(GlobalVariables.fieldWidth) )
             {
-                ellipseTransform.X = imageTransform.X = GlobalMethods.FromCornerXToMiddleXAxis(newX);
+                ellipseTransform.X = imageTransform.X = newX;
             }
             else if (!isLeftSide)
             {
-                double distanceRight = Math.Abs(GlobalMethods.FromMiddleXToCornerXAxis((float)ellipseTransform.X) - (GameContainer.mainGrid.ActualWidth - GlobalVariables.fieldMargin));
-                double distanceLeft = Math.Abs(GlobalMethods.FromMiddleXToCornerXAxis((float)ellipseTransform.X) - (GameContainer.mainGrid.ActualWidth - GlobalVariables.playerFieldWidth - GlobalVariables.fieldMargin));
+                double distanceRight = Math.Abs(newX - GlobalMethods.FromCornerXToMiddleXAxis(GlobalVariables.fieldWidth));
+                double distanceLeft = Math.Abs(newX - GlobalMethods.FromCornerXToMiddleXAxis(GlobalVariables.fieldWidth - GlobalVariables.playerFieldWidth));
 
                 ellipseTransform.X = imageTransform.X = distanceRight < distanceLeft ?
-                    GlobalMethods.FromCornerXToMiddleXAxis((float)(GameContainer.mainGrid.ActualWidth - GlobalVariables.fieldMargin)) :
-                    GlobalMethods.FromCornerXToMiddleXAxis((float)(GameContainer.mainGrid.ActualWidth - GlobalVariables.playerFieldWidth - GlobalVariables.fieldMargin));
+                    GlobalMethods.FromCornerXToMiddleXAxis(GlobalVariables.fieldWidth) :
+                    GlobalMethods.FromCornerXToMiddleXAxis(GlobalVariables.fieldWidth - GlobalVariables.playerFieldWidth);
             }
 
-            if (newY > GlobalVariables.fieldMargin && newY < GameContainer.mainGrid.ActualHeight - GlobalVariables.fieldMargin)
+            if (newY > GlobalMethods.FromCornerYToMiddleYAxis(0) && 
+                newY < GlobalMethods.FromCornerYToMiddleYAxis(GlobalVariables.fieldHeight))
             {
-                ellipseTransform.Y = imageTransform.Y = GlobalMethods.FromCornerYToMiddleYAxis(newY);
+                ellipseTransform.Y = imageTransform.Y = newY;
             }
             else
             {
-                ellipseTransform.Y = imageTransform.Y = GlobalMethods.FromMiddleYToCornerYAxis((float)imageTransform.Y) > GameContainer.mainGrid.ActualHeight / 2  ?
-                    GlobalMethods.FromCornerYToMiddleYAxis((float)(GameContainer.mainGrid.ActualHeight - GlobalVariables.fieldMargin)) :
-                    GlobalMethods.FromCornerYToMiddleYAxis(GlobalVariables.fieldMargin);
+                ellipseTransform.Y = imageTransform.Y = newY > 0 ?
+                    GlobalMethods.FromCornerYToMiddleYAxis(GlobalVariables.fieldHeight) :
+                    GlobalMethods.FromCornerYToMiddleYAxis(0);
             }
 
             this.position.x = (float)ellipseTransform.X;
@@ -146,15 +167,7 @@ namespace Pongaline.Classes
 
         public void Shoot()
         {
-            int speedX;
-            if (isLeftSide)
-            {
-                speedX = 2;
-            }
-            else
-            {
-                speedX = -2;
-            }
+            int speedX = isLeftSide ? 8 : -8;
 
             BulletEntity bullet = new BulletEntity()
             {

@@ -110,8 +110,8 @@
     </Compile>
     <Compile Include="Classes\BallEntity.cs" />
     <Compile Include="Classes\BulletEntity.cs" />
-    <Compile Include="Classes\FasterBulletPowerup.cs" />
     <Compile Include="Classes\GameEntity.cs" />
+    <Compile Include="Classes\MiniPlayerEntity.cs" />
     <Compile Include="Classes\PaddleEntity.cs" />
     <Compile Include="Classes\PlayerEntity.cs" />
     <Compile Include="Classes\Position.cs" />
@@ -136,10 +136,13 @@
   <ItemGroup>
     <Content Include="Assets\DontSueUs\background.jpg" />
     <Content Include="Assets\DontSueUs\ball.png" />
+    <Content Include="Assets\DontSueUs\brick.png" />
     <Content Include="Assets\DontSueUs\bulletLeft.png" />
     <Content Include="Assets\DontSueUs\bulletRight.png" />
     <Content Include="Assets\DontSueUs\luigi.png" />
     <Content Include="Assets\DontSueUs\mario.png" />
+    <Content Include="Assets\DontSueUs\powGreen.png" />
+    <Content Include="Assets\DontSueUs\powRed.png" />
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />

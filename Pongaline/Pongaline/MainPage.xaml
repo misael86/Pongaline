@@ -12,11 +12,11 @@
             <ImageBrush ImageSource="Assets/DontSueUs/background.jpg"/>
         </Grid.Background>
 
-        <Border BorderBrush="{StaticResource AppBarItemForegroundThemeBrush}" BorderThickness="3" CornerRadius="5" Margin="20">
+        <Border BorderBrush="{StaticResource AppBarItemForegroundThemeBrush}" BorderThickness="3" CornerRadius="5" Margin="20" Width="1300" Height="700">
             <Grid>
 
-                <TextBlock x:Name="TextBlock_LeftScore" HorizontalAlignment="Center" TextWrapping="Wrap" Text="0" VerticalAlignment="Center" Margin="0,0,400,0" Opacity="0.2" FontSize="200"/>
-                <TextBlock x:Name="TextBlock_RightScore" HorizontalAlignment="Center" TextWrapping="Wrap" Text="0" VerticalAlignment="Center" Opacity="0.2" Margin="400,0,0,0" FontSize="200"/>
+                <TextBlock x:Name="TextBlock_LeftScore" HorizontalAlignment="Center" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Margin="0,0,400,0" Opacity="0.2" FontSize="200"/>
+                <TextBlock x:Name="TextBlock_RightScore" HorizontalAlignment="Center" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Opacity="0.2" Margin="400,0,0,0" FontSize="200"/>
 
                 <Border BorderBrush="{StaticResource AppBarItemForegroundThemeBrush}" Width="300" HorizontalAlignment="Left" BorderThickness="0,0,3,0" Background="#4CFB0000">
                 </Border>

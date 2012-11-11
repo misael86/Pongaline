@@ -25,14 +25,8 @@ namespace Pongaline.Classes
         {
             TranslateTransform translateTransform = this.image.RenderTransform as TranslateTransform;
 
-            if (translateTransform.X > GlobalMethods.FromCornerXToMiddleXAxis((float)(GameContainer.mainGrid.ActualWidth - 30)) ||
-                translateTransform.X < GlobalMethods.FromCornerXToMiddleXAxis(30))
-            {
-                this.velocity.x *= -1;
-            }
-
-            if (translateTransform.Y > GlobalMethods.FromCornerYToMiddleYAxis((float)(GameContainer.mainGrid.ActualHeight - 30)) ||
-                translateTransform.Y < GlobalMethods.FromCornerYToMiddleYAxis(30))
+            if (translateTransform.Y < GlobalMethods.FromCornerYToMiddleYAxis(0) ||
+                translateTransform.Y > GlobalMethods.FromCornerYToMiddleYAxis(GlobalVariables.fieldHeight))
             {
                 this.velocity.y *= -1;
             }
@@ -43,13 +37,13 @@ namespace Pongaline.Classes
             position.x += this.velocity.x;
             position.y += this.velocity.y;
 
-            if (translateTransform.X > GlobalMethods.FromCornerXToMiddleXAxis((float)(GameContainer.mainGrid.ActualWidth - GlobalVariables.fieldMargin)))
+            if (translateTransform.X < GlobalMethods.FromCornerXToMiddleXAxis(0))
             {
                 GlobalMethods.GiveLeftPlayerPoint();
                 Reset();
             }
 
-            if (translateTransform.X < GlobalMethods.FromCornerXToMiddleXAxis(GlobalVariables.fieldMargin))
+            if (translateTransform.X > GlobalMethods.FromCornerXToMiddleXAxis(GlobalVariables.fieldWidth))
             {
                 GlobalMethods.GiveRightPlayerPoint();
                 Reset();

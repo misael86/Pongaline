@@ -85,7 +85,7 @@ namespace Pongaline
             {
                 position = new Position()
                 {
-                    x = GlobalMethods.FromCornerXToMiddleXAxis((float)GameContainer.mainGrid.ActualWidth - 600),
+                    x = GlobalMethods.FromCornerXToMiddleXAxis(0),
                     y = 0,
                 },
 
@@ -110,7 +110,7 @@ namespace Pongaline
             {
                 position = new Position()
                 {
-                    x = GlobalMethods.FromCornerXToMiddleXAxis((float)GameContainer.mainGrid.ActualWidth + 600),
+                    x = GlobalMethods.FromCornerXToMiddleXAxis(GlobalVariables.fieldWidth),
                     y = 0,
                 },
 
@@ -133,7 +133,7 @@ namespace Pongaline
             {
                 position = new Position()
                 {
-                    x = -480,
+                    x = GlobalMethods.FromCornerXToMiddleXAxis(GlobalVariables.playerFieldWidth),
                     y = 0,
                 },
 
@@ -149,9 +149,11 @@ namespace Pongaline
                     y = 5,
                 },
 
-                imageURI = new Uri("ms-appx:///Assets/SmallLogo.png"),
+                imageURI = new Uri("ms-appx:///Assets/DontSueUs/brick.png"),
             };
+
             GameContainer.AddEntity(paddlePlayerOne);
+            
             #endregion
 
             #region PADDLE 2
@@ -160,7 +162,7 @@ namespace Pongaline
             {
                 position = new Position()
                 {
-                    x = 480,
+                    x = GlobalMethods.FromCornerXToMiddleXAxis(GlobalVariables.fieldWidth - GlobalVariables.playerFieldWidth),
                     y = 0,
                 },
 
@@ -176,13 +178,11 @@ namespace Pongaline
                     y = -5,
                 },
 
-                imageURI = new Uri("ms-appx:///Assets/SmallLogo.png"),
+                imageURI = new Uri("ms-appx:///Assets/DontSueUs/brick.png"),
             };
 
             GameContainer.AddEntity(paddlePlayerTwo);
             #endregion
-
-
 
         }
 
@@ -208,8 +208,8 @@ namespace Pongaline
             {
                 position = new Position()
                 {
-                    x = -(float)GameContainer.mainGrid.ActualWidth / 2,
-                    y = -(float)GameContainer.mainGrid.ActualHeight / 2,
+                    x = 0,
+                    y = 0,
                 },
 
                 size = new Pongaline.Classes.Size
@@ -223,8 +223,6 @@ namespace Pongaline
                     x = 0,
                     y = r.Next(40),
                 },
-
-                imageURI = new Uri("ms-appx:///Assets/SplashScreen.png"),
             };
 
 
