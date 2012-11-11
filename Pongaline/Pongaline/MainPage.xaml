@@ -7,7 +7,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid x:Name="MainGrid" Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+    <Grid x:Name="MainGrid">
+        <Grid.Background>
+            <ImageBrush ImageSource="Assets/DontSueUs/background.jpg"/>
+        </Grid.Background>
 
         <Border BorderBrush="{StaticResource AppBarItemForegroundThemeBrush}" BorderThickness="3" CornerRadius="5" Margin="20">
             <Grid>

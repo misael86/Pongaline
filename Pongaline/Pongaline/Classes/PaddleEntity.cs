@@ -33,6 +33,8 @@ namespace Pongaline.Classes
             translateTransform.X += this.velocity.x;
             translateTransform.Y += this.velocity.y;
 
+            this.position.x += this.velocity.x;
+            this.position.y += this.velocity.y;
         }
     }
 }

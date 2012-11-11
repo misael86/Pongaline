@@ -45,19 +45,13 @@ namespace Pongaline.Classes
 
             if (translateTransform.X > GlobalMethods.FromCornerXToMiddleXAxis((float)(GameContainer.mainGrid.ActualWidth - GlobalVariables.fieldMargin)))
             {
-                var border = GameContainer.mainGrid.Children.FirstOrDefault(ui => ui is Border) as Border;
-                var grid = border.Child as Grid;
-                var textblock = grid.Children.FirstOrDefault(ui => ui is TextBlock && ((TextBlock)ui).Name == "TextBlock_LeftScore") as TextBlock;
-                textblock.Text = (int.Parse(textblock.Text) + 1).ToString();
+                GlobalMethods.GiveLeftPlayerPoint();
                 Reset();
             }
 
             if (translateTransform.X < GlobalMethods.FromCornerXToMiddleXAxis(GlobalVariables.fieldMargin))
             {
-                var border = GameContainer.mainGrid.Children.FirstOrDefault(ui => ui is Border) as Border;
-                var grid = border.Child as Grid;
-                var textblock = grid.Children.FirstOrDefault(ui => ui is TextBlock && ((TextBlock)ui).Name == "TextBlock_RightScore") as TextBlock;
-                textblock.Text = (int.Parse(textblock.Text) + 1).ToString();
+                GlobalMethods.GiveRightPlayerPoint();
                 Reset();
             }
         }
