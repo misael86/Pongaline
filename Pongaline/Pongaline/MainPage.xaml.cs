@@ -26,6 +26,9 @@ namespace Pongaline
     {
         GameContainer gameContainer = new GameContainer();
 
+        DispatcherTimer runPowerUpGeneratorTimer;
+        Random r = new Random();
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -36,6 +39,11 @@ namespace Pongaline
             runGameTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
             runGameTimer.Tick += runGameTimer_Tick;
             runGameTimer.Start();
+            
+            runPowerUpGeneratorTimer = new DispatcherTimer();
+            InitPowerUpGenerator();
+            runPowerUpGeneratorTimer.Tick += RunPowerUpGenerator;
+            runPowerUpGeneratorTimer.Start();
 
             InitiateData();
         }
@@ -43,8 +51,6 @@ namespace Pongaline
         private void InitiateData()
         {
             #region BALL
-
-            Random r = new Random();
 
             BallEntity ball = new BallEntity()
             {
@@ -176,11 +182,55 @@ namespace Pongaline
             GameContainer.AddEntity(paddlePlayerTwo);
             #endregion
 
+
+
+        }
+
+        Random randomSec = new Random();
+
+        private void InitPowerUpGenerator()
+        {
+            TimeSpan timeSpanPowerUp;
+            timeSpanPowerUp = new TimeSpan(0, 0, 0, r.Next(60), 0);
+            runPowerUpGeneratorTimer.Interval = timeSpanPowerUp;
+            
+            
         }
 
         void runGameTimer_Tick(object sender, object e)
         {
             gameContainer.Update();
+        }
+
+        void RunPowerUpGenerator(object sender, object e)
+        {
+            PowerUpEntity powerUP = new PowerUpEntity()
+            {
+                position = new Position()
+                {
+                    x = -(float)GameContainer.mainGrid.ActualWidth / 2,
+                    y = -(float)GameContainer.mainGrid.ActualHeight / 2,
+                },
+
+                size = new Pongaline.Classes.Size
+                {
+                    height = 40,
+                    width = 40,
+                },
+
+                velocity = new Velocity()
+                {
+                    x = 0,
+                    y = r.Next(40),
+                },
+
+                imageURI = new Uri("ms-appx:///Assets/SplashScreen.png"),
+            };
+
+
+            GameContainer.AddEntity(powerUP);
+            InitPowerUpGenerator();
+            //randomSeconds = randomSec.Next(10);
         }
 
         /// <summary>
