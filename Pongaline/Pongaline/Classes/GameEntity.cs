@@ -26,7 +26,7 @@ namespace Pongaline.Classes
             {
                 UriSource = this.imageURI,
             };
-
+            
             TranslateTransform translateTransform = new TranslateTransform()
             {
                 X = GlobalMethods.GetCornerPositionFromMiddlePosition(this.position).x,
