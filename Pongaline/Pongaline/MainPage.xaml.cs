@@ -85,8 +85,8 @@ namespace Pongaline
 
                 size = new Pongaline.Classes.Size()
                 {
-                    height = 40,
-                    width = 40,
+                    height = 80,
+                    width = 80,
                 },
 
                 imageURI = new Uri("ms-appx:///Assets/SmallLogo.png"),
@@ -110,8 +110,8 @@ namespace Pongaline
 
                 size = new Pongaline.Classes.Size()
                 {
-                    height = 40,
-                    width = 40,
+                    height = 80,
+                    width = 80,
                 },
 
                 imageURI = new Uri("ms-appx:///Assets/SmallLogo.png"),
