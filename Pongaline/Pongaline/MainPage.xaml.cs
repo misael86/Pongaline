@@ -106,6 +106,8 @@ namespace Pongaline
                 imageURI = new Uri("ms-appx:///Assets/DontSueUs/mario.png"),
             };
 
+            player1.bulletSpeed = 2;
+
             GameContainer.AddEntity(player1);
 
             #endregion
@@ -130,6 +132,8 @@ namespace Pongaline
 
                 imageURI = new Uri("ms-appx:///Assets/DontSueUs/luigi.png"),
             };
+
+            player2.bulletSpeed = 2;
 
             GameContainer.AddEntity(player2);
 
