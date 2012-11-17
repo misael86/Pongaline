@@ -22,8 +22,16 @@ namespace Pongaline
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
+    /// 
+
+
+
     public sealed partial class MainPage : Page
     {
+
+        PlayerEntity player1;
+        PlayerEntity player2;
+
         GameContainer gameContainer = new GameContainer();
 
         DispatcherTimer runPowerUpGeneratorTimer;
@@ -81,7 +89,7 @@ namespace Pongaline
 
             #region PLAYER 1
 
-            PlayerEntity player1 = new PlayerEntity()
+            player1 = new PlayerEntity()
             {
                 position = new Position()
                 {
@@ -98,6 +106,8 @@ namespace Pongaline
                 imageURI = new Uri("ms-appx:///Assets/DontSueUs/mario.png"),
             };
 
+            player1.bulletSpeed = 2;
+
             GameContainer.AddEntity(player1);
 
             #endregion
@@ -106,7 +116,7 @@ namespace Pongaline
 
             
 
-            PlayerEntity player2 = new PlayerEntity()
+            player2 = new PlayerEntity()
             {
                 position = new Position()
                 {
@@ -122,6 +132,8 @@ namespace Pongaline
 
                 imageURI = new Uri("ms-appx:///Assets/DontSueUs/luigi.png"),
             };
+
+            player2.bulletSpeed = 2;
 
             GameContainer.AddEntity(player2);
 

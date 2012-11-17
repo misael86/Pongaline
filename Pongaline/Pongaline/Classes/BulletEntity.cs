@@ -15,7 +15,7 @@ namespace Pongaline.Classes
 {
     class BulletEntity : GameEntity
     {
-
+        public bool isSpeedUp { get; set; }
 
         public override void Update()
         {
@@ -51,7 +51,24 @@ namespace Pongaline.Classes
                         GameContainer.RemoveEntity(this);
                     }
                 }
-            }   
+            }  
+ 
+            var bricks = GameContainer.gameEntities.Where(ge => ge is PaddleEntity);
+
+            foreach (var brick in bricks.ToList())
+            {
+                if (IsCollision(this, brick))
+                {
+                    if (this.velocity.x > 0 && brick.position.x > 0)
+                    {
+                        GameContainer.RemoveEntity(this);
+                    }
+                    else if (this.velocity.x < 0 && brick.position.x < 0)
+                    {
+                        GameContainer.RemoveEntity(this);
+                    }
+                }
+            }
         }
 
         private bool IsCollision(GameEntity ge1, GameEntity ge2)

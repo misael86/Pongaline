@@ -77,6 +77,26 @@ namespace Pongaline.Classes
                 }
             }
 
+            var miniPlayers = GameContainer.gameEntities.Where(ge => ge is MiniPlayerEntity);
+
+            foreach (var miniPlayer in miniPlayers)
+            {
+                if (IsCollision(this, miniPlayer))
+                {
+                    this.velocity.x = miniPlayer.position.x > 0 ?
+                        Math.Abs(velocity.x) : -Math.Abs(velocity.x);
+
+                    this.velocity.y +=
+
+                        miniPlayer.position.x > 0 ?
+                        (float)(1.3 * (GameContainer.gameEntities.Where(ge => ge is PlayerEntity).First(ge => (ge as PlayerEntity).isLeftSide) as PlayerEntity).lastVelocity.y) :
+                        (float)(1.3 * (GameContainer.gameEntities.Where(ge => ge is PlayerEntity).First(ge => !(ge as PlayerEntity).isLeftSide) as PlayerEntity).lastVelocity.y);
+                }
+            }
+
+
+            this.velocity.x = this.velocity.x > 15 ? 15 : this.velocity.x;
+            this.velocity.y = this.velocity.y > 15 ? 15 : this.velocity.y;
         }
 
         private bool IsCollision(GameEntity ge1, GameEntity ge2)

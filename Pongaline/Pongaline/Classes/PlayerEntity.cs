@@ -17,11 +17,13 @@ namespace Pongaline.Classes
     class PlayerEntity : GameEntity
     {
         Ellipse ellipse = new Ellipse();
+        public int bulletSpeed { get; set; }
+
         public bool isLeftSide { get; set; }
 
         public Velocity lastVelocity { get; set; }
 
-        MiniPlayerEntity miniPlayer = new MiniPlayerEntity();
+        MiniPlayerEntity miniPlayer;
 
         public Ellipse getEllipse()
         {
@@ -37,14 +39,7 @@ namespace Pongaline.Classes
         {
             base.Paint();
 
-            if (this.position.x < 0)
-            {
-                isLeftSide = true;
-            }
-            else
-            {
-                isLeftSide = false;
-            }
+            this.isLeftSide = this.position.x < 0;
 
             this.lastVelocity = new Velocity() { x = 0, y = 0 };
 
@@ -75,21 +70,25 @@ namespace Pongaline.Classes
 
             GameContainer.mainGrid.Children.Add(this.ellipse);
 
-
-            miniPlayer.position = new Position()
+            miniPlayer = new MiniPlayerEntity()
             {
-                x = this.position.x + 30,
-                y = this.position.y,
-            };
+                position = new Position()
+                {
+                    x = this.isLeftSide ? GlobalMethods.FromCornerXToMiddleXAxis((float)(GlobalVariables.fieldWidth - GlobalVariables.playerFieldWidth - 200)) :
+                                           GlobalMethods.FromCornerXToMiddleXAxis((float)(GlobalVariables.playerFieldWidth + 200)),
+                    y = this.position.y,
+                },
 
-            miniPlayer.size = new Pongaline.Classes.Size
+                size = new Pongaline.Classes.Size
                 {
                     height = 100,
                     width = 30,
-                };
+                },
 
-            miniPlayer.imageURI = new Uri("ms-appx:///Assets/DontSueUs/brick.png");
+                imageURI = this.isLeftSide ? new Uri("ms-appx:///Assets/DontSueUs/yoshiRight.png") : new Uri("ms-appx:///Assets/DontSueUs/yoshiLeft.png"),
 
+            };
+            
             GameContainer.AddEntity(miniPlayer);
         }
 
@@ -128,7 +127,7 @@ namespace Pongaline.Classes
             }
 
             if (!isLeftSide && newX > GlobalMethods.FromCornerXToMiddleXAxis(GlobalVariables.fieldWidth - GlobalVariables.playerFieldWidth) &&
-                               newX < GlobalMethods.FromCornerXToMiddleXAxis(GlobalVariables.fieldWidth) )
+                               newX < GlobalMethods.FromCornerXToMiddleXAxis(GlobalVariables.fieldWidth))
             {
                 ellipseTransform.X = imageTransform.X = newX;
             }
@@ -142,7 +141,7 @@ namespace Pongaline.Classes
                     GlobalMethods.FromCornerXToMiddleXAxis(GlobalVariables.fieldWidth - GlobalVariables.playerFieldWidth);
             }
 
-            if (newY > GlobalMethods.FromCornerYToMiddleYAxis(0) && 
+            if (newY > GlobalMethods.FromCornerYToMiddleYAxis(0) &&
                 newY < GlobalMethods.FromCornerYToMiddleYAxis(GlobalVariables.fieldHeight))
             {
                 ellipseTransform.Y = imageTransform.Y = newY;
@@ -156,7 +155,8 @@ namespace Pongaline.Classes
 
             this.position.x = (float)ellipseTransform.X;
             this.position.y = (float)ellipseTransform.Y;
-
+            this.miniPlayer.position.y = this.position.y;
+            (this.miniPlayer.image.RenderTransform as TranslateTransform).Y = this.position.y;
         }
 
         public override void Move()

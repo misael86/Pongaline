@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="f4c4d2ab-6379-4711-979c-1d3096a8abe9" Publisher="CN=Misael" Version="1.0.0.1" />
+  <Identity Name="f4c4d2ab-6379-4711-979c-1d3096a8abe9" Publisher="CN=Misael" Version="1.0.0.2" />
   <Properties>
     <DisplayName>Pongaline</DisplayName>
     <PublisherDisplayName>Misael</PublisherDisplayName>
@@ -17,7 +17,10 @@
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Pongaline.App">
       <VisualElements DisplayName="Pongaline" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Pongaline" ForegroundText="light" BackgroundColor="#464646">
         <DefaultTile ShowName="allLogos" />
-        <SplashScreen Image="Assets\SplashScreen.png" />
+        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#FFFFFF" />
+        <InitialRotationPreference>
+          <Rotation Preference="landscape" />
+        </InitialRotationPreference>
       </VisualElements>
     </Application>
   </Applications>

@@ -143,6 +143,8 @@
     <Content Include="Assets\DontSueUs\mario.png" />
     <Content Include="Assets\DontSueUs\powGreen.png" />
     <Content Include="Assets\DontSueUs\powRed.png" />
+    <Content Include="Assets\DontSueUs\yoshiLeft.png" />
+    <Content Include="Assets\DontSueUs\yoshiRight.png" />
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
